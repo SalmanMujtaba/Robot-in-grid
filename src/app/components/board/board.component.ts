@@ -15,7 +15,7 @@ export class BoardComponent implements AfterViewInit {
   currentClass: string;
   currentElement: Element;
   lowerBound = 0;
-  upperBound = 9;
+  upperBound = 35;
 
   constructor(protected elementRef: ElementRef, protected renderer: Renderer2) {
     this.initializeVariables();
@@ -24,7 +24,6 @@ export class BoardComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     // this.allCells = Array.from(this.elementRef.nativeElement.querySelectorAll('.container__cell'));
-    // console.log(document.getElementById('1'));
     this.currentCell = 0;
     this.setCurrentElement(this.currentCell.toString());
     // this.currentElement = document.getElementById(this.currentCell.toString()) as Element;
@@ -62,23 +61,21 @@ export class BoardComponent implements AfterViewInit {
     if (this.checkBoundsForBack(+this.currentCell)) {
       this.addClass((this.currentCell - 1).toString());
       this.currentCell--;
-      console.log("current cell", this.currentCell);
     }
   }
 
   up() {
-    if (this.checkBoundsForUpAdDown(+this.currentCell)) {
+    if (this.checkBoundsForUp(+this.currentCell)) {
       this.addClass((this.currentCell - 6).toString());
       this.currentCell -= 6;
+
     }
   }
 
   down() {
-    if (this.checkBoundsForUpAdDown(+this.currentCell)) {
+    if (this.checkBoundsForDown(+this.currentCell)) {
       this.addClass((this.currentCell + 6).toString());
       this.currentCell += 6;
-      console.log("current cell", this.currentCell);
-
     }
   }
 
@@ -86,12 +83,16 @@ export class BoardComponent implements AfterViewInit {
     if (this.checkBoundsForNext(+this.currentCell)) {
       this.addClass((this.currentCell + 1).toString());
       this.currentCell++;
-      console.log("current cell", this.currentCell);
     }
   }
 
-  checkBoundsForUpAdDown(id: number) {
-    id++;
+  checkBoundsForUp(id: number) {
+    id = id - 6;
+    return (id <= this.upperBound && id >= this.lowerBound);
+  }
+
+  checkBoundsForDown(id: number) {
+    id = id + 6;
     return (id <= this.upperBound && id >= this.lowerBound);
   }
 
@@ -104,6 +105,7 @@ export class BoardComponent implements AfterViewInit {
       return false;
     } else {
       return id % 6 !== 0;
+
     }
   }
 }
