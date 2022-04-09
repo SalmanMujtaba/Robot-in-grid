@@ -1,0 +1,34 @@
+$cell-size: 100px;
+$mark-size: calc(#{$cell-size} * 0.30);
+
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  place-content: center; 
+  grid-template-columns: repeat(6,auto);
+  position: relative;
+}
+
+.container__cell {
+  height: $cell-size;
+  width: $cell-size;
+  border: 1px solid black;
+  background-color: white;
+  display: grid;
+  place-items: center;
+}
+
+.container__cell--element::before {
+  content: '';
+  border-radius: 50%;
+  height: $mark-size;
+  width: $mark-size;
+  background-color: black;
+  position: absolute;
+}
+
+.container__action-buttons {
+  grid-column: 1/7;
+  text-align: center;
+}

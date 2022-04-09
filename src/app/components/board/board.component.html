@@ -1,0 +1,19 @@
+<div class="container">
+  <div *ngFor="let item of items; index as i">
+    <div #cells class="container__cell" [id]="i"></div>
+  </div>
+  <div class="container__action-buttons">
+    <button (click)="back()" mat-icon-button>
+      <mat-icon class="mat-18">arrow_back</mat-icon>
+    </button>
+    <button (click)="up()" mat-icon-button>
+      <mat-icon class="mat-18">arrow_upward</mat-icon>
+    </button>
+    <button (click)="down()" mat-icon-button>
+      <mat-icon class="mat-18">arrow_downward</mat-icon>
+    </button>
+    <button (click)="forward()" mat-icon-button>
+      <mat-icon class="mat-18">arrow_forward</mat-icon>
+    </button>
+  </div>
+</div>
